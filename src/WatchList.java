@@ -9,9 +9,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 //javafx imports (requires referenced libraries)
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
@@ -52,17 +56,17 @@ public class WatchList extends Application {
         TableView<Show> table = new TableView<Show>();
         // Creates the 3 columns
         TableColumn<Show, String> showNameColumn = new TableColumn<Show, String>("Show Name");
-        TableColumn<Show, Integer> epsWatchedColumn = new TableColumn<Show, Integer>("Last Episode Watched");
+        TableColumn<Show, String> epsWatchedColumn = new TableColumn<Show, String>("Last Episode Watched");
         TableColumn<Show, String> showStatusColumn = new TableColumn<Show, String>("Watch Status");
         // Uses getter methods to try to get variables with this name
         showNameColumn.setCellValueFactory(new PropertyValueFactory<Show, String>("ShowName"));
-        epsWatchedColumn.setCellValueFactory(new PropertyValueFactory<Show, Integer>("EpsWatched"));
+        epsWatchedColumn.setCellValueFactory(new PropertyValueFactory<Show, String>("EpsWatched"));
         showStatusColumn.setCellValueFactory(new PropertyValueFactory<Show, String>("ShowStatus"));
         // adds colums to table
         table.getColumns().add(showNameColumn);
         table.getColumns().add(epsWatchedColumn);
         table.getColumns().add(showStatusColumn);
-        root.setCenter(table);
+        root.setLeft(table);
         // makes it so every column gets equal space
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
@@ -71,17 +75,70 @@ public class WatchList extends Application {
             table.getItems().add(show);
         }
 
+        //Sets up the 3 input text fields + the button
+        TextField showNameTextbox = new TextField();
+        TextField episodeTextbox = new TextField();
+        TextField showStatusTextbox = new TextField();
+        Button inputNewShowButton = new Button();
+        showNameTextbox.setPromptText("Enter Show Name Here");
+        episodeTextbox.setPromptText("Enter Last Episode Watched (Must be number)");
+        showStatusTextbox.setPromptText("Enter Watching Status");
+        inputNewShowButton.setText("Add Show with these values to showlist");
+        //sets up button press
+        inputNewShowButton.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent arg0) {
+                //checks if all 3 text boxes are filled
+                if(!showNameTextbox.getText().isEmpty() && !episodeTextbox.getText().isEmpty() && !showStatusTextbox.getText().isEmpty()) {
+                    showList.add(new Show(showNameTextbox.getText(), episodeTextbox.getText(), showStatusTextbox.getText()));
+                    //updates the table to show the new show + the old ones
+                    table.getItems().clear();
+                    for (Show show : showList) {
+                        table.getItems().add(show);
+                    }
+                    //saves changes to the shows.watchlist file
+                    try {
+                        writeToFile();
+                    } catch (IOException e) {
+                        System.out.println("Something went seriously wrong here if this error pops up");
+                    }
+                    showNameTextbox.clear();
+                    episodeTextbox.clear();
+                    showStatusTextbox.clear();
+                    inputNewShowButton.setText("Show Added!"); 
+                } else { //if all 3 text boxes aren't filled
+                    inputNewShowButton.setText("Failed, Needs 3 Inputs");
+                }
+            }
+            
+        });
+
+        //Adds 3 input text field + the button to the scene
+        //adds 3 texboxes to a pane going top down
+        BorderPane textboxPane = new BorderPane();
+        textboxPane.setTop(showNameTextbox);
+        textboxPane.setCenter(episodeTextbox);
+        textboxPane.setBottom(showStatusTextbox);
+        BorderPane inputPane = new BorderPane();
+        //adds 3 textboxes above the input button and sets the to the right part of the main pane (root)
+        inputPane.setTop(textboxPane);
+        inputPane.setCenter(inputNewShowButton);
+        inputPane.setMaxWidth(200);
+        inputPane.setMinWidth(100);
+        root.setRight(inputPane);
+
         // Gets Icon for the window (temp one made in MSpaint for now)
         Image icon = new Image("watchtime.png");
         arg0.getIcons().add(icon);
 
         // Sets up the other basic window elements and shows it
-        Scene scene = new Scene(root, 420, 420);
+        Scene scene = new Scene(root, 624, 352);
         arg0.setScene(scene);
         arg0.setTitle("WatchTime Tracker");
-        arg0.setWidth(420);
-        arg0.setHeight(420);
-        arg0.setResizable(false); // cant resize window
+        arg0.setWidth(624);
+        arg0.setHeight(352);
+        arg0.setResizable(true); // can resize window
         writeToFile();
         arg0.show();
     }
@@ -99,22 +156,20 @@ public class WatchList extends Application {
 
             while ((s = br.readLine()) != null) {
                 String[] importedShow = s.split(":::");
-                for(int i = 0 ; i < importedShow.length; i ++)
-                    System.out.println(importedShow[i]);
                 if (importedShow.length != 3) {
                     System.out.println("Improper shows.watchlist file found"); // I should make this a popup message later so the user knows whats wrong
                     break;
                 }
-                showList.add(new Show(importedShow[0], Integer.parseInt(importedShow[1]), importedShow[2]));
+                showList.add(new Show(importedShow[0], importedShow[1], importedShow[2]));
             }
             br.close();
         } catch (IOException e) {
             System.out.print("No shows.watchlist file");
         }
         /*
-         * debugging add statements (used prior to fileReading) 
-         * showList.add(new Show("TestShow", 10000, "Watching")); 
-         * showList.add(new Show("ZTestShow", 10,"Waiting"));
+         * debugging add statements (used prior to fileReading) <- leaving for possible future tests
+         * showList.add(new Show("TestShow", "10000", "Watching")); 
+         * showList.add(new Show("ZTestShow", "10","Waiting"));
          */
     }
 

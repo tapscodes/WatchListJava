@@ -5,14 +5,14 @@
  */
 public class Show {
     private String showName;
-    private int epsWatched;
+    private String epsWatched; //this is a string instead of an int because it allows writing the number like 'eleven' AND writing the number directly like '11'
     private String showStatus;
 
     /**
      * Default Show Constructor
      */
     public Show(){
-        this("NA", 10, "watching");
+        this("NA", "11", "watching");
     }
 
     /**
@@ -21,7 +21,7 @@ public class Show {
      * @param epsWatched episodes watched (starts from 1 by default, this is the right side value)
      * @param watchStatus current status of watching show (watched, waiting, complete, etc.)
      */
-    public Show(String showName, int epsWatched, String showStatus) {
+    public Show(String showName, String epsWatched, String showStatus) {
         this.showName = showName;
         this.epsWatched = epsWatched;
         this.showStatus = showStatus;
@@ -39,7 +39,7 @@ public class Show {
      * Getter method for the current episode watched count
      * @return last episode that was watched
      */
-    public Integer getEpsWatched(){
+    public String getEpsWatched(){
         return epsWatched;
     }
 
@@ -63,7 +63,7 @@ public class Show {
      * Setter method for the last episode watched
      * @param ep episode watched
      */
-    public void setEpsWatched(int epsWatched) {
+    public void setEpsWatched(String epsWatched) {
         this.epsWatched = epsWatched;
     }
 
