@@ -46,8 +46,7 @@ public class WatchList extends Application {
      */
     @Override
     public void start(Stage arg0) throws Exception {
-        // adds shows from file if it is found in root folder with this program (for
-        // testing it adds directly)
+        // adds shows from file if it is found in root folder with this program 
         addShows();
         // sets up a border pane javafx window
         BorderPane root = new BorderPane();
@@ -81,9 +80,9 @@ public class WatchList extends Application {
         TextField showStatusTextbox = new TextField();
         Button inputNewShowButton = new Button();
         showNameTextbox.setPromptText("Enter Show Name Here");
-        episodeTextbox.setPromptText("Enter Last Episode Watched (Must be number)");
+        episodeTextbox.setPromptText("Enter Last Episode Watched");
         showStatusTextbox.setPromptText("Enter Watching Status");
-        inputNewShowButton.setText("Add Show with these values to showlist");
+        inputNewShowButton.setText("Add Show");
         //sets up button press
         inputNewShowButton.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -101,14 +100,13 @@ public class WatchList extends Application {
                     try {
                         writeToFile();
                     } catch (IOException e) {
-                        System.out.println("Something went seriously wrong here if this error pops up");
+                        AlertBox.display("Alert!", "Something went seriously wrong, please contact me on git if you see this");
                     }
                     showNameTextbox.clear();
                     episodeTextbox.clear();
                     showStatusTextbox.clear();
-                    inputNewShowButton.setText("Show Added!"); 
                 } else { //if all 3 text boxes aren't filled
-                    inputNewShowButton.setText("Failed, Needs 3 Inputs");
+                    AlertBox.display("Alert!", "You need 3 inputs");
                 }
             }
             
