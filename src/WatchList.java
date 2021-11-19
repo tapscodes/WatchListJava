@@ -65,7 +65,7 @@ public class WatchList extends Application {
         table.getColumns().add(showNameColumn);
         table.getColumns().add(epsWatchedColumn);
         table.getColumns().add(showStatusColumn);
-        root.setLeft(table);
+        root.setCenter(table);
         // makes it so every column gets equal space
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
@@ -122,7 +122,7 @@ public class WatchList extends Application {
         //adds 3 textboxes above the input button and sets the to the right part of the main pane (root)
         inputPane.setTop(textboxPane);
         inputPane.setCenter(inputNewShowButton);
-        inputPane.setMaxWidth(200);
+        inputPane.setMaxWidth(250);
         inputPane.setMinWidth(100);
         root.setRight(inputPane);
 
