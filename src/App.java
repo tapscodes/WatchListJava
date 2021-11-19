@@ -3,12 +3,14 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class App extends Application{
     public static void main(String[] args) {
         System.out.println("Main Method Called");
+        //launches main window defined in 'start'
         launch(args);
     }
 
@@ -31,10 +33,19 @@ public class App extends Application{
         StackPane root = new StackPane();
         root.getChildren().add(btn);
 
-        //Creates a new scene
+        //Creates the scene used
         Scene scene = new Scene(root, 300, 250);
-        arg0.setTitle("Title");
+
+        //Gets Icon for the window (temp one made in MSpaint for now)
+        Image icon = new Image("watchtime.png");
+        arg0.getIcons().add(icon);
+
+        //Sets up the other basic window elements and shows it
         arg0.setScene(scene);
+        arg0.setTitle("WatchTime Tracker");
+        arg0.setWidth(420);
+        arg0.setHeight(420);
+        arg0.setResizable(false); //cant resize window
         arg0.show();
     }
 }
