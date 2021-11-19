@@ -41,14 +41,19 @@ public class WatchTime extends Application{
         TableColumn<Show, String> showStatusColumn = new TableColumn<Show, String>("Watch Status");
         //Uses getter methods to try to get variables with this name
         showNameColumn.setCellValueFactory(new PropertyValueFactory<Show, String>("showName"));
-        epsWatchedColumn.setCellValueFactory(new PropertyValueFactory<Show, Integer>("watched"));
-        showStatusColumn.setCellValueFactory(new PropertyValueFactory<Show, String>("status"));
+        epsWatchedColumn.setCellValueFactory(new PropertyValueFactory<Show, Integer>("epsWatched;"));
+        showStatusColumn.setCellValueFactory(new PropertyValueFactory<Show, String>("showStatus"));
         //adds colums to table
         table.getColumns().add(showNameColumn);
         table.getColumns().add(epsWatchedColumn);
         table.getColumns().add(showStatusColumn);
-
         root.setCenter(table);
+        //makes it so every column gets equal space
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        //adds all items to table
+        table.getItems().add(new Show("TestShow", 10000, "Watching"));
+        table.getItems().add(new Show("ZTestShow", 10, "Waiting"));        
 
         //Gets Icon for the window (temp one made in MSpaint for now)
         Image icon = new Image("watchtime.png");

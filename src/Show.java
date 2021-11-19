@@ -5,14 +5,14 @@
  */
 public class Show {
     private String showName;
-    private int watched;
-    private String status;
+    private int epsWatched;
+    private String showStatus;
 
     /**
      * Default Show Constructor
      */
     public Show(){
-        this("NA", 1, "watching");
+        this("NA", 10, "watching");
     }
 
     /**
@@ -21,10 +21,10 @@ public class Show {
      * @param epsWatched episodes watched (starts from 1 by default, this is the right side value)
      * @param watchStatus current status of watching show (watched, waiting, complete, etc.)
      */
-    public Show(String showName, int epsWatched, String watchStatus) {
+    public Show(String showName, int epsWatched, String showStatus) {
         this.showName = showName;
-        this.watched = epsWatched;
-        this.status = watchStatus;
+        this.epsWatched = epsWatched;
+        this.showStatus = showStatus;
     }
 
     /**
@@ -39,39 +39,39 @@ public class Show {
      * Getter method for the current episode watched count
      * @return last episode that was watched
      */
-    public int getEpisodesWatched(){
-        return watched;
+    public int getEpsWatched(){
+        return epsWatched;
     }
 
     /**
      * Getter method for the watch status of a show
      * @return the status given to the show
      */
-    public String getWatchStatus(){
-        return status;
+    public String getShowStatus(){
+        return showStatus;
     }
 
     /**
      * Setter method for the show name
      * @param name name of the show
      */
-    public void setShowName(String name){
-        showName = name;
+    public void setShowName(String showName){
+        this.showName = showName;
     }
 
     /**
      * Setter method for the last episode watched
      * @param ep episode watched
      */
-    public void setEpisodesWatched(int ep) {
-        watched = ep;
+    public void setEpsWatched(int epsWatched) {
+        this.epsWatched = epsWatched;
     }
 
     /**
-     * 
-     * @param status
+     * Setter method for the show status
+     * @param status status of current show
      */
-    public void setWatchStatus(String status) {
-        this.status = status;
+    public void setShowStatus(String showStatus) {
+        this.showStatus = showStatus;
     }
 }
