@@ -39,7 +39,7 @@ public class Show {
      * Getter method for the current episode watched count
      * @return last episode that was watched
      */
-    public int getEpsWatched(){
+    public Integer getEpsWatched(){
         return epsWatched;
     }
 
