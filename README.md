@@ -1,15 +1,23 @@
 # WatchList
- Keeps track of shows watched + status of watching (complete, watching, waiting, etc.)
-## shows.watchlist file
+This is a program that helps you store, edit, and view a list of shows, the episodes watched, and what your current watching status is. 
+
+## Will this program work on my system?
+As long as your system can install java, it will. This program will work on linux, windows, and macOS, see below for instructions.
+
+## How to use/install
+To use this program simply download the .jar file and install java on your computer ([CLICK HERE](https://www.java.com/en/) to go to java's official website to download it if you don't already have it installed). Once java is installed, simply drag the program (WatchList.jar) where you want your database to be stored and then you can just double click it or run it normally and a database called 'shows.watchlist' will be made in the same folder which automatically updates as you use the program! (There is also a sample shows.watchlist file attached here if you want that for some reason).
+
+## Importing the shows you've watch from another version of this application
+In order to import shows from another version of this app, simply drag your shows.watchlist file into the same folder as this jar file and it will attempt to import whatever is there. (PLEASE BE CAUTIOUS WHILE DOING THIS AND BACK UP YOUR SHOWS.WATCHLIST FILE, ANY BAD FILES WILL BE OVERWRITTEN IF THIS PROGRAM IS UNABLE TO PROPERLY READ THEM)
+
+## I found a bug! What do I do?
+Please go under the 'issues' tab of this github page and post about any issues you're having with this program there, and I'll try to respond to issues when I can.
+
+## Creating your own shows.watchlist backing file
 All of your shows watched, the last episode you watched of it, and its current status will be stored in a file called "shows.watchlist" alongside the main files in SRC.
 The file must be formatted like
 
 (Show Name [this is a string/word(s)]):::(Episode Number [this is a number/int]):::(Watch Status [this is a string/word(s)])
 
-on every single line (1 show per line). An example file can be found in the 'src' folder on github (and probably the releases).
-## Setup (in VScode)
-Your launch.json must have the "vmArgs" javafx portion added below 'request' in launch.json (which is found on their website at: https://openjfx.io/openjfx-docs/#install-javafx )
-
-^As of 11/19/21, this is ""vmArgs": "--module-path C:/Users/(Insert User Here)/Downloads/openjfx-17.0.1_windows-x64_bin-sdk/javafx-sdk-17.0.1/lib --add-modules javafx.controls,javafx.fxml",
-
-Your settings.json will contain your reference libraries (which are the jsons downloaded from java fx sdk at: https://gluonhq.com/products/javafx/ ) <- this can be added manually via the 'Java Projects' tab once you have the proper extension in VScode (being the many java extensions from microsoft).
+on every single line (1 show per line). An example file can be found in the 'src' folder on github (and probably the releases). 
+Although I'm not sure why you would want to do this, since this program automatically creates and saves a shows.watchlist file as you use it.
