@@ -82,7 +82,7 @@ public class WatchList extends Application {
         TextField showStatusTextbox = new TextField();
         Button inputNewShowButton = new Button();
         showNameTextbox.setPromptText("Enter Show Name Here");
-        episodeTextbox.setPromptText("Enter Last Episode Watched");
+        episodeTextbox.setPromptText("Enter Last Episode Seen");
         showStatusTextbox.setPromptText("Enter Watching Status");
         inputNewShowButton.setText("Add Show");
         //sets up button press
@@ -197,20 +197,20 @@ public class WatchList extends Application {
         //adds 3 texboxes to a pane going top down
         BorderPane textboxPane = new BorderPane();
         textboxPane.setTop(showNameTextbox);
-        textboxPane.setCenter(episodeTextbox);
+        textboxPane.setLeft(episodeTextbox);
         textboxPane.setBottom(showStatusTextbox);
         //Adds 3 buttons to the scene
         //Adds 3 buttons to a pane going top down
         BorderPane buttonPane = new BorderPane();
         buttonPane.setTop(deleteShowButton);
-        buttonPane.setCenter(updateShowButton);
+        buttonPane.setLeft(updateShowButton);
         buttonPane.setBottom(inputNewShowButton);
         //adds 3 textboxes above the input button and sets the to the right part of the main pane (root)
         BorderPane inputPane = new BorderPane();
         inputPane.setTop(textboxPane);
-        inputPane.setCenter(buttonPane);
-        inputPane.setMaxWidth(250);
-        inputPane.setMinWidth(100);
+        inputPane.setBottom(buttonPane);
+        inputPane.setMinWidth(150);
+        inputPane.setMinHeight(100);
         root.setRight(inputPane);
 
         //handles actions when clicking on tableview values
