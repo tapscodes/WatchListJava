@@ -259,7 +259,7 @@ public class WatchList extends Application {
      */
     private void addShows() {
         // writes file to parent directery
-        File file = new File("./src/shows.watchlist");
+        File file = new File("shows.watchlist");
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String s;
