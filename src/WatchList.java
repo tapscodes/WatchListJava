@@ -96,7 +96,10 @@ public class WatchList extends Application {
             public void handle(ActionEvent arg0) {
                 //checks if all 3 text boxes are filled
                 if(!showNameTextbox.getText().isEmpty() && !episodeTextbox.getText().isEmpty() && !showStatusTextbox.getText().isEmpty()) {
-                    showList.add(new Show(showNameTextbox.getText(), episodeTextbox.getText(), showStatusTextbox.getText()));
+                    if(checkDuplicate(showNameTextbox.getText())) { //checks if the show already exists (doesn't allow for duplicate shows)
+                        AlertBox.display("Alert!", "This show already exists, delete it first to add it again or just update it");
+                    } else {
+                        showList.add(new Show(showNameTextbox.getText(), episodeTextbox.getText(), showStatusTextbox.getText()));
                     //updates the table to show the new show + the old ones
                     table.getItems().clear();
                     for (Show show : showList) {
@@ -111,6 +114,7 @@ public class WatchList extends Application {
                     showNameTextbox.clear();
                     episodeTextbox.clear();
                     showStatusTextbox.clear();
+                    }
                 } else { //if all 3 text boxes aren't filled
                     AlertBox.display("Alert!", "You need 3 inputs");
                 }
@@ -205,6 +209,7 @@ public class WatchList extends Application {
         buttonPane.setTop(deleteShowButton);
         buttonPane.setLeft(updateShowButton);
         buttonPane.setBottom(inputNewShowButton);
+
         //adds 3 textboxes above the input button and sets the to the right part of the main pane (root)
         BorderPane inputPane = new BorderPane();
         inputPane.setTop(textboxPane);
@@ -252,7 +257,7 @@ public class WatchList extends Application {
      * Adds shows to the showList from any file found called "shows.watchlist" in
      * the stored files
      */
-    public void addShows() {
+    private void addShows() {
         // writes file to parent directery
         File file = new File("./src/shows.watchlist");
         try {
@@ -284,12 +289,25 @@ public class WatchList extends Application {
      * @throws IOException Throws exception if the file we just created doesn't
      *                     exist (not sure why that would be the case)
      */
-    public void writeToFile() throws IOException {
+    private void writeToFile() throws IOException {
         BufferedWriter bw = new BufferedWriter(new FileWriter("src/shows.watchlist"));
         for (Show show : showList) {
             bw.write(show.getShowName() + ":::" + show.getEpsWatched() + ":::" + show.getShowStatus());
             bw.newLine();
         }
         bw.close();
+    }
+
+    /**
+     * Checks to see if the show already exists
+     * @param showName the name of the show
+     * @return wether or not the show already exists (true if it's a duplicate)
+     */
+    private boolean checkDuplicate(String showName){
+        for(Show show: showList){
+            if(show.getShowName().equals(showName))
+                return true;
+        }
+        return false;
     }
 }

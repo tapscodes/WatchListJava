@@ -1,4 +1,5 @@
 //javafx imports
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -20,7 +21,7 @@ public class AlertBox {
         //creates alert window
         Stage alertBox = new Stage();
         BorderPane root = new BorderPane();
-        Scene scene = new Scene(root, 624, 352);
+        Scene scene = new Scene(root, 1200, 300);
         //adds alert message
         Text text = new Text();
         text.setText(message);
@@ -31,11 +32,12 @@ public class AlertBox {
         //adds alert button
         Button closeBtn = new Button("OK, I understand");
         root.setBottom(closeBtn);
+        BorderPane.setAlignment(closeBtn, Pos.CENTER);
         closeBtn.setOnAction(e -> alertBox.close());
         //finishes setting up and then calls alert window
         alertBox.setScene(scene);
         alertBox.setTitle(title);
-        alertBox.setWidth(250);
+        alertBox.setWidth(500);
         alertBox.setHeight(100);
         alertBox.show();
     }
