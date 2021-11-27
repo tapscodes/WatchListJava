@@ -17,7 +17,7 @@ Please go under the 'issues' tab of this github page and post about any issues y
 All of your shows watched, the last episode you watched of it, and its current status will be stored in a file called "shows.watchlist" alongside the main files in SRC.
 The file must be formatted like
 
-(Show Name [this is a string/word(s)]):::(Episode Number [this is a number/int]):::(Watch Status [this is a string/word(s)])
+(Show Name):::(Episode Number [can be a word or a number]):::(Watch Status)
 
 on every single line (1 show per line). An example file can be found in the 'src' folder on github (and probably the releases). 
 Although I'm not sure why you would want to do this, since this program automatically creates and saves a shows.watchlist file as you use it.
