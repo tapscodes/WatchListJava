@@ -290,7 +290,7 @@ public class WatchList extends Application {
      *                     exist (not sure why that would be the case)
      */
     private void writeToFile() throws IOException {
-        BufferedWriter bw = new BufferedWriter(new FileWriter("src/shows.watchlist"));
+        BufferedWriter bw = new BufferedWriter(new FileWriter("shows.watchlist"));
         for (Show show : showList) {
             bw.write(show.getShowName() + ":::" + show.getEpsWatched() + ":::" + show.getShowStatus());
             bw.newLine();
