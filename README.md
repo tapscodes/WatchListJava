@@ -15,7 +15,7 @@ Please go under the 'issues' tab of this github page and post about any issues y
 
 ## Creating your own shows.watchlist backing file
 All of your shows watched, the last episode you watched of it, and its current status will be stored in a file called "shows.watchlist" alongside the main files in SRC.
-The file must be formatted like
+The file must be formatted like what can be seen below
 
 (Show Name):::(Episode Number [can be a word or a number]):::(Watch Status)
 
