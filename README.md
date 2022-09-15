@@ -9,7 +9,7 @@ To use this program simply download the .jar file and install the java developme
 
 [CLICK HERE](https://www.oracle.com/java/technologies/downloads/#jdk18-windows) to go to java's official website to download it if you don't already have it installed. 
 
-Once java is installed, simply drag the program (WatchList.jar) where you want your database to be stored and then you can just double click it or run it normally and a database called 'shows.watchlist' will be made in the same folder which automatically updates as you use the program! (There is also a sample shows.watchlist file attached here if you want that for some reason).
+Once java is installed, simply drag the program (WatchList.jar) where you want your database to be stored and then you can just double click it or run it normally and a database called 'shows.watchlist' will be made in the same folder which automatically updates as you use the program! (There is also a sample shows.watchlist file attached [here](https://github.com/tapscodes/WatchList/releases/download/v1.0.0/shows.watchlist) if you want that for some reason).
 
 ## Importing the shows you've watch from another version of this application
 In order to import shows from another version of this app, simply drag your shows.watchlist file into the same folder as this jar file and it will attempt to import whatever is there. (PLEASE BE CAUTIOUS WHILE DOING THIS AND BACK UP YOUR SHOWS.WATCHLIST FILE, ANY BAD FILES WILL BE OVERWRITTEN IF THIS PROGRAM IS UNABLE TO PROPERLY READ THEM)
