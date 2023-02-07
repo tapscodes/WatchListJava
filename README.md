@@ -1,5 +1,6 @@
-# WatchList
+# WatchListJava
 This is a program that helps you store, edit, and view a list of shows, the episodes watched, and what your current watching status is. 
+It was written entirely in java.
 
 ## Will this program work on my system?
 As long as your system can install java, it will. This program will work on linux, windows, and macOS, see below for instructions.
